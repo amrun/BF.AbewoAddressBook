@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AbewoAddressBook.Entities
+namespace BF.AbewoAddressBook.Entities
 {
 	class Company
 	{

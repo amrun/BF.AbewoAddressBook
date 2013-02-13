@@ -1,9 +1,10 @@
-﻿<Window x:Class="AbewoAddressBook.MainWindow"
+﻿<Window x:Class="BF.AbewoAddressBook.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ABEWO AdressBook" Height="573" Width="810"
-		Icon=".\Resources\images\report.png">
-	<Grid>
+		Icon=".\Resources\images\report.png"
+		WindowStartupLocation="CenterScreen">
+	<Grid Margin="3,3">
 		<TabControl HorizontalAlignment="Left" Height="543" VerticalAlignment="Top" Width="802">
 			<TabItem>
 				<TabItem.Header >

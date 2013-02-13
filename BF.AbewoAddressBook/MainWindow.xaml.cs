@@ -12,12 +12,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 using System.Data.Entity;
 
-using AbewoAddressBook.Entities;
+using BF.AbewoAddressBook.Entities;
 
-namespace AbewoAddressBook
+namespace BF.AbewoAddressBook
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -26,6 +27,8 @@ namespace AbewoAddressBook
 	{
 		public MainWindow()
 		{
+
+			Thread.Sleep( 1000 ); 
 			InitializeComponent();
 		}
 
@@ -50,6 +53,8 @@ namespace AbewoAddressBook
 			catch { 
 			}
 		}
+
+
 
 	}
 }
