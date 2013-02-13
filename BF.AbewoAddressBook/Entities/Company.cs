@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BF.AbewoAddressBook.Entities
+﻿namespace BF.AbewoAdressBook.Entities
 {
-	class Company
+	public class Company
 	{
+		public int companyId { get; set; }
 	}
 }
