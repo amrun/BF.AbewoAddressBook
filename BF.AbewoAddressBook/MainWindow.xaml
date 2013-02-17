@@ -1,11 +1,31 @@
 ﻿<Window x:Class="BF.AbewoAdressBook.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="ABEWO AdressBook" Height="573" Width="810"
+        Title="ABEWO AdressBook"
+		MinHeight="400" MinWidth="600"
 		Icon=".\Resources\images\report.png"
 		WindowStartupLocation="CenterScreen">
+
+	<Window.Resources>
+		<Style x:Key="LabelDefault" TargetType="Label">
+			<Setter Property="FontWeight" Value="Bold" />
+		</Style>
+		<Style x:Key="LabelError" TargetType="Label"  BasedOn="{StaticResource LabelDefault}">
+			<Setter Property="Foreground" Value="Red" />
+		</Style>
+		<Style x:Key="ButtonDefault" TargetType="Button">
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="Height" Value="26"></Setter>
+			<Setter Property="Width" Value="100"></Setter>
+		</Style>
+		<Style x:Key="ButtonError" TargetType="Button"  BasedOn="{StaticResource ButtonDefault}">
+			<Setter Property="Foreground" Value="Red" />
+		</Style>
+	</Window.Resources>
+
+
 	<Grid Margin="3,3">
-		<TabControl HorizontalAlignment="Left" Height="543" VerticalAlignment="Top" Width="802">
+		<TabControl Margin="10,10,10,10">
 			<TabItem>
 				<TabItem.Header >
 					<StackPanel Orientation="Horizontal">
@@ -13,24 +33,42 @@
 						<TextBlock VerticalAlignment="Center" Margin="5, 0" >Suche</TextBlock>
 					</StackPanel>
 				</TabItem.Header>
-				<Grid>
-					<Label Content="Suchen nach:" Margin="10,10,677,476"/>
-					<TextBox Name="SearchField" TextChanged="SearchField_TextChanged" Height="23" TextWrapping="Wrap"  Margin="115,12,10,476"/>
-					<Label Content="Suchen in:" Margin="10,40,677,446"/>
+				<Grid Margin="0,0,0,0">
+
+
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="50" Margin="0,10,0,0" VerticalAlignment="Top" Width="704">
+						<Label Content="Suchen nach:" Height="26" FontWeight="Bold"/>
+						<TextBox x:Name="SearchField" TextChanged="SearchField_TextChanged" Height="23" TextWrapping="Wrap" Width="200" Margin="10,14"/>
+					</StackPanel>
+					<!--<Label Content="Suchen in:" Margin="10,40,677,446"/>
 					<RadioButton Content="Allem" HorizontalAlignment="Left" Margin="115,49,0,0" VerticalAlignment="Top" />
 					<RadioButton Content="Nur Personen" HorizontalAlignment="Left" Margin="179,49,0,0" VerticalAlignment="Top" />
-					<RadioButton Content="Nur Firmen" HorizontalAlignment="Left" Margin="284,49,0,0" VerticalAlignment="Top" />
-					<Label Content="Resultate:" Margin="10,70,677,416"/>
-
-					<ListView Name="ResultList" Margin="115,70,10,10">
-						<ListView.View>
-							<GridView>
-								<GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
-								<GridViewColumn Header="Vorname" DisplayMemberBinding="{Binding Path=Surname}"/>
-								<GridViewColumn Header="Email" DisplayMemberBinding="{Binding Path=Email}"/>
-							</GridView>
-						</ListView.View>
-					</ListView>
+					<RadioButton Content="Nur Firmen" HorizontalAlignment="Left" Margin="284,49,0,0" VerticalAlignment="Top" />-->
+					<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,65,0,0">
+						<StackPanel  Orientation="Vertical"  VerticalAlignment="Top" Height="377">
+							<ListView x:Name="ResultList" >
+								<ListView.View>
+									<GridView>
+										<GridViewColumn>
+											<Image Source=".\Resources\Images\pencil.png" Stretch="None" />
+											<GridViewColumn.CellTemplate>
+												<DataTemplate>
+													<Button Click="PersonButtonEditPerson" Tag="{Binding}">Edit</Button>
+												</DataTemplate>
+											</GridViewColumn.CellTemplate>
+										</GridViewColumn>
+										<GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+										<GridViewColumn Header="Vorname" DisplayMemberBinding="{Binding Surname}"/>
+										<GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"/>
+									</GridView>
+								</ListView.View>
+							</ListView>
+						</StackPanel>
+					</ScrollViewer>
+					<!--<Label Content="Suchen in:" Margin="10,40,677,446"/>
+					<RadioButton Content="Allem" HorizontalAlignment="Left" Margin="115,49,0,0" VerticalAlignment="Top" />
+					<RadioButton Content="Nur Personen" HorizontalAlignment="Left" Margin="179,49,0,0" VerticalAlignment="Top" />
+					<RadioButton Content="Nur Firmen" HorizontalAlignment="Left" Margin="284,49,0,0" VerticalAlignment="Top" />-->
 				</Grid>
 			</TabItem>
 			<TabItem>
@@ -40,35 +78,53 @@
 						<TextBlock VerticalAlignment="Center" Margin="5, 0" >Person erfassen</TextBlock>
 					</StackPanel>
 				</TabItem.Header>
-				<Grid>
-					<Label FontWeight="Bold" FontSize="20" Foreground="#333333" Content="Eine neue Person erfassen:" Margin="10,10,10,463"/>
-					
-					<Label Content="Anrede:" Margin="14,62,665,422"/>
-					<RadioButton Content="Herr" HorizontalAlignment="Left" Margin="132,71,0,0" VerticalAlignment="Top"/>
-					<RadioButton Content="Frau" HorizontalAlignment="Left" Margin="192,71,0,0" VerticalAlignment="Top"/>
+				<Border HorizontalAlignment="Left" VerticalAlignment="Top" Width="724" Height="450" >
+					<Grid VerticalAlignment="Top" Height="300">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="37*"/>
+							<ColumnDefinition Width="144*"/>
+						</Grid.ColumnDefinitions>
+						<Label FontWeight="Bold" FontSize="20"  Foreground="#333333" Content="Eine neue Person erfassen:" Grid.ColumnSpan="2" Margin="0,0,0,259" />
 
-					<Label Content="Name:" Margin="14,90,665,394"/>
-					<TextBox Text="Name" HorizontalAlignment="Left" Height="23" Margin="132,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="654"/>
+						<Label Content="Anrede:" Style="{StaticResource LabelDefault}" Height="26" Margin="14,64,21,210"/>
+						<RadioButton Content="Herr" HorizontalAlignment="Left" Margin="132,71,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+						<RadioButton Content="Frau" HorizontalAlignment="Left" Margin="44,71,0,0" VerticalAlignment="Top" Grid.Column="1"/>
 
-					<Label Content="Vorname:" Margin="14,122,665,362"/>
-					<TextBox Text="Vorname" HorizontalAlignment="Left" Height="23" Margin="132,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="654"/>
+						<Label Content="Name:" GotFocus="UIElement_OnGotFocus" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,92,21,182"/>
+						<TextBox Name="TbName" HorizontalAlignment="Left" Height="23" Margin="132,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" Grid.ColumnSpan="2"/>
 
-					<Label Content="Strasse:" Margin="14,154,665,330"/>
-					<TextBox Text="Strasse" HorizontalAlignment="Left" Height="23" Margin="132,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
+						<Label Content="Vorname:" Style="{StaticResource LabelDefault}"  Height="26"  Margin="14,124,21,150"/>
+						<TextBox Name="TbSurname" HorizontalAlignment="Left" Height="23" Margin="132,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" Grid.ColumnSpan="2"/>
 
-					<Label Content="Nr:" Margin="331,154,348,330"/>
-					<TextBox Text="Nr" HorizontalAlignment="Left" Height="23" Margin="449,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
+						<Label Content="Strasse:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,156,21,118"/>
+						<TextBox Name="TbStreet" HorizontalAlignment="Left" Height="23" Margin="132,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Grid.ColumnSpan="2"/>
 
-					<Label Content="PLZ:" Margin="14,186,665,298"/>
-					<TextBox Text="PLZ" HorizontalAlignment="Left" Height="23" Margin="132,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
+						<Label Content="Nr:" Style="{StaticResource LabelDefault}" Height="26"  Margin="200,156,326,118" Grid.Column="1"/>
+						<TextBox Name="TbStreetNr" HorizontalAlignment="Left" Height="23" Margin="255,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Grid.Column="1"/>
 
-					<Label Content="Ort:" Margin="331,186,348,298"/>
-					<TextBox Text="Ort" HorizontalAlignment="Left" Height="23" Margin="449,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
-					
-					<Label Content="E-Mail:" Margin="14,218,665,266"/>
-					<TextBox Text="E-Mail" HorizontalAlignment="Left" Height="23" Margin="132,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="654"/>
+						<Label Content="PLZ:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,188,21,86"/>
+						<TextBox Name="TbPlz" HorizontalAlignment="Left" Height="23" Margin="132,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Grid.ColumnSpan="2"/>
 
-				</Grid>
+						<Label Content="Ort:" Style="{StaticResource LabelDefault}" Height="26"  Margin="200,188,326,86" Grid.Column="1"/>
+						<TextBox Name="TbPlace" HorizontalAlignment="Left" Height="23" Margin="255,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Grid.Column="1"/>
+
+						<Label Content="E-Mail:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,220,21,54"/>
+						<TextBox Name="TbEMail" HorizontalAlignment="Left" Height="23" Margin="132,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" Grid.ColumnSpan="2"/>
+
+						<Button Margin="466,248,10,26" Style="{StaticResource ButtonDefault}" Grid.Column="1" Click="PersonButtonSaveClick" >
+							<StackPanel Orientation="Horizontal">
+								<Image VerticalAlignment="Center"  Source=".\Resources\images\disk.png" Stretch="None" />
+								<TextBlock VerticalAlignment="Center" Margin="5, 0" Text="Speichern"/>
+							</StackPanel>
+						</Button>
+						<Button Margin="363,248,113,26" Style="{StaticResource ButtonDefault}" Grid.Column="1" >
+							<StackPanel Orientation="Horizontal">
+								<Image VerticalAlignment="Center"  Source=".\Resources\images\delete.png" Stretch="None" />
+								<TextBlock VerticalAlignment="Center" Margin="5, 0" Text="Abbrechen"/>
+							</StackPanel>
+						</Button>
+					</Grid>
+				</Border>
 			</TabItem>
 			<TabItem>
 				<TabItem.Header >
