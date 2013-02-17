@@ -18,29 +18,75 @@ namespace BF.AbewoAdressBook.Windows
 	/// <summary>
 	/// Interaction logic for EditPerson.xaml
 	/// </summary>
-	public partial class EditPerson: Window
+	public partial class EditPerson : Window
 	{
 
-		public EditPerson( Person person )
+		public EditPerson( int personId )
 		{
+
 			InitializeComponent();
-			pp = person;
-			TbEditEMail.Text = pp.Email;
-			TbEditSurname.Text = pp.Surname;
-			TbEditName.Text = pp.Name;
-			TbEditPlz.Text = pp.Plz;
-			TbEditStreet.Text = pp.Street;
-			TbEditStreetNr.Text = pp.StreetNr;
+
+			this.PersonId = personId;
+			using( var db = new AbewoAddressBookContext() )
+			{
+				var query = from b in db.Persons
+							where b.personId.Equals( this.PersonId )
+							select b;
+
+				if( query.First().Gender.Equals( false ) )
+				{
+					RbEditMale.IsChecked = true;
+				}
+				else
+				{
+					RbEditFemale.IsChecked = true;
+				}
+				TbEditName.Text = query.First().Name;
+				TbEditSurname.Text = query.First().Surname;
+				TbEditEMail.Text = query.First().Email;
+				TbEditSurname.Text = query.First().Surname;
+				TbEditName.Text = query.First().Name;
+				TbEditPlz.Text = query.First().Plz;
+				TbEditStreet.Text = query.First().Street;
+				TbEditStreetNr.Text = query.First().StreetNr;
+			}
 		}
 
 		private void PersonButtonUpdateClick( object sender, RoutedEventArgs e )
 		{
-			pp.Name = TbEditName.Text;
 
-			Octopus.UpdatePerson( pp );
+
+			using( var db = new AbewoAddressBookContext() )
+			{
+				var query = from b in db.Persons
+							where b.personId.Equals( this.PersonId )
+							select b;
+
+				if( RbEditMale.IsChecked == true )
+				{
+					query.First().Gender = false;
+				}
+				else if( RbEditFemale.IsChecked == true )
+				{
+					query.First().Gender = true;
+				}
+
+				query.First().Name = TbEditName.Text;
+				query.First().Surname = TbEditSurname.Text;
+				query.First().Email = TbEditEMail.Text;
+				query.First().Surname = TbEditSurname.Text;
+				query.First().Plz = TbEditPlz.Text;
+				query.First().Street = TbEditStreet.Text;
+				query.First().StreetNr = TbEditStreetNr.Text;
+
+				db.SaveChanges();
+
+			}
+
+			//Octopus.UpdatePerson( Pp );
 		}
 
-		protected Person pp
+		protected int PersonId
 		{
 			get;
 			set;
@@ -48,6 +94,12 @@ namespace BF.AbewoAdressBook.Windows
 
 		private void ButtonCancelClick( object sender, RoutedEventArgs e )
 		{
+			this.Close();
+		}
+
+		private void PersonButtonUpdateAndCloseClick( object sender, RoutedEventArgs e )
+		{
+			PersonButtonUpdateClick( sender, e );
 			this.Close();
 		}
 	}

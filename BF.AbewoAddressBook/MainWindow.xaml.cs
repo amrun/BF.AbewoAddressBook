@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Threading;
+using System.Windows.Media.Animation;
 using BF.AbewoAdressBook.Entities;
 using BF.AbewoAdressBook.Windows;
 
@@ -17,12 +18,17 @@ namespace BF.AbewoAdressBook
 		public MainWindow()
 		{
 			InitializeComponent();
+			UpdateResultlist();
+		}
+
+		private void UpdateResultlist()
+		{
 			List<Person> personList = Octopus.GetDbContent();
 			try
 			{
 				ResultList.ItemsSource = personList;
 			}
-			catch( Exception m )
+			catch (Exception m)
 			{
 			}
 		}
@@ -67,8 +73,11 @@ namespace BF.AbewoAdressBook
 			ResultList.SelectedItem = ( (Button)sender ).DataContext;
 			Person editPerson = (Person)ResultList.SelectedItem;
 
-			Window editWindow = new EditPerson( editPerson );
+			Window editWindow = new EditPerson( editPerson.personId );
+
 			editWindow.ShowDialog();
+
+			UpdateResultlist();
 		}
 	}
 }

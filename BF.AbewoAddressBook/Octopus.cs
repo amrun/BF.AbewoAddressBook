@@ -15,16 +15,6 @@ namespace BF.AbewoAdressBook
 		{
 			List<Person> persons = new List<Person>();
 
-			Person p1 = new Person();
-			p1.Name = "Hans Meier";
-			p1.Surname = "MeinVorname";
-			p1.Email = "hansmeier@meier.ch";
-
-			Person p2 = new Person();
-			p2.Name = "Joggeli Müller";
-			p2.Surname = "MeinVorname";
-			p2.Email = "joggi@meier.ch";
-
 			using( var db = new AbewoAddressBookContext() )
 			{
 				var query = from b in db.Persons
@@ -43,15 +33,15 @@ namespace BF.AbewoAdressBook
 
 		public static bool SavePerson( Person person )
 		{
-			using (var db = new AbewoAddressBookContext())
+			using( var db = new AbewoAddressBookContext() )
 			{
-				db.Persons.Add(person);
+				db.Persons.Add( person );
 				db.SaveChanges();
 			}
 			return true;
 		}
 
-		public static bool UpdatePerson(Person person)
+		public static bool UpdatePerson( Person person )
 		{
 			using( var db = new AbewoAddressBookContext() )
 			{

@@ -17,11 +17,31 @@
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="Height" Value="26"></Setter>
 			<Setter Property="Width" Value="100"></Setter>
-		</Style>
-		<Style x:Key="ButtonError" TargetType="Button"  BasedOn="{StaticResource ButtonDefault}">
-			<Setter Property="Foreground" Value="Red" />
-		</Style>
-	</Window.Resources>
+        </Style>
+        <Style x:Key="ButtonError" TargetType="Button"  BasedOn="{StaticResource ButtonDefault}">
+            <Setter Property="Foreground" Value="Red" />
+        </Style>
+        <Style x:Key="ButtonEdit" TargetType="Button">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="LightGray" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+        </Style>
+        <Style x:Key="ColumnMale" TargetType="Button">
+            <Setter Property="Background" Value="Blue" />
+        </Style>
+        <Style x:Key="ColumnFemale" TargetType="Button">
+            <Setter Property="Background" Value="Red" />
+        </Style>
+
+        <!--<Style TargetType="{x:Type ListViewItem}">
+            <Setter Property="Style" Value="{StaticResource ColumnMale}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Gender}" Value="true">
+                    <Setter Property="Style" Value="{StaticResource ColumnFemale}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>-->
+    </Window.Resources>
 
 
 	<Grid Margin="3,3">
@@ -49,16 +69,21 @@
 							<ListView x:Name="ResultList" >
 								<ListView.View>
 									<GridView>
-										<GridViewColumn>
-											<Image Source=".\Resources\Images\pencil.png" Stretch="None" />
-											<GridViewColumn.CellTemplate>
+                                        <GridViewColumn>
+                                            <TextBlock VerticalAlignment="Top" Text="Bearbeiten"/>
+                                            <GridViewColumn.CellTemplate>
 												<DataTemplate>
-													<Button Click="PersonButtonEditPerson" Tag="{Binding}">Edit</Button>
+                                                    <Button Click="PersonButtonEditPerson" Tag="{Binding}" Style="{StaticResource ButtonEdit}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Image VerticalAlignment="Center"  Source=".\Resources\images\pencil.png" Stretch="None" />
+                                                        </StackPanel>
+                                                    </Button>
 												</DataTemplate>
 											</GridViewColumn.CellTemplate>
-										</GridViewColumn>
-										<GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-										<GridViewColumn Header="Vorname" DisplayMemberBinding="{Binding Surname}"/>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Geschl." DisplayMemberBinding="{Binding Gender}" />
+                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Vorname" DisplayMemberBinding="{Binding Surname}"/>
 										<GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"/>
 									</GridView>
 								</ListView.View>
@@ -87,8 +112,8 @@
 						<Label FontWeight="Bold" FontSize="20"  Foreground="#333333" Content="Eine neue Person erfassen:" Grid.ColumnSpan="2" Margin="0,0,0,259" />
 
 						<Label Content="Anrede:" Style="{StaticResource LabelDefault}" Height="26" Margin="14,64,21,210"/>
-						<RadioButton Content="Herr" HorizontalAlignment="Left" Margin="132,71,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-						<RadioButton Content="Frau" HorizontalAlignment="Left" Margin="44,71,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <RadioButton GroupName="GrpGender" Content="Herr" HorizontalAlignment="Left" Margin="132,71,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                        <RadioButton GroupName="GrpGender" Content="Frau" HorizontalAlignment="Left" Margin="44,71,0,0" VerticalAlignment="Top" Grid.Column="1"/>
 
 						<Label Content="Name:" GotFocus="UIElement_OnGotFocus" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,92,21,182"/>
 						<TextBox Name="TbName" HorizontalAlignment="Left" Height="23" Margin="132,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" Grid.ColumnSpan="2"/>
