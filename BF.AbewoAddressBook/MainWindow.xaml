@@ -41,6 +41,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>-->
+       
     </Window.Resources>
 
 
@@ -58,7 +59,7 @@
 
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="50" Margin="0,10,0,0" VerticalAlignment="Top" Width="704">
 						<Label Content="Suchen nach:" Height="26" FontWeight="Bold"/>
-						<TextBox x:Name="SearchField" TextChanged="SearchField_TextChanged" Height="23" TextWrapping="Wrap" Width="200" Margin="10,14"/>
+						<TextBox x:Name="TbSearchField" TextChanged="TbSearchField_TextChanged" Height="23" TextWrapping="Wrap" Width="200" Margin="10,14"/>
 					</StackPanel>
 					<!--<Label Content="Suchen in:" Margin="10,40,677,446"/>
 					<RadioButton Content="Allem" HorizontalAlignment="Left" Margin="115,49,0,0" VerticalAlignment="Top" />
@@ -73,7 +74,7 @@
                                             <TextBlock VerticalAlignment="Top" Text="Bearbeiten"/>
                                             <GridViewColumn.CellTemplate>
 												<DataTemplate>
-                                                    <Button Click="PersonButtonEditPerson" Tag="{Binding}" Style="{StaticResource ButtonEdit}">
+                                                    <Button Click="PersonButtonEditPerson_Click" Tag="{Binding}" Style="{StaticResource ButtonEdit}">
                                                         <StackPanel Orientation="Horizontal">
                                                             <Image VerticalAlignment="Center"  Source=".\Resources\images\pencil.png" Stretch="None" />
                                                         </StackPanel>
@@ -115,8 +116,8 @@
                         <RadioButton GroupName="GrpGender" Content="Herr" HorizontalAlignment="Left" Margin="132,71,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                         <RadioButton GroupName="GrpGender" Content="Frau" HorizontalAlignment="Left" Margin="44,71,0,0" VerticalAlignment="Top" Grid.Column="1"/>
 
-						<Label Content="Name:" GotFocus="UIElement_OnGotFocus" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,92,21,182"/>
-						<TextBox Name="TbName" HorizontalAlignment="Left" Height="23" Margin="132,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" Grid.ColumnSpan="2"/>
+						<Label Content="Name:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,92,21,182"/>
+                        <TextBox Name="TbName" HorizontalAlignment="Left" Height="23" Margin="132,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" Grid.ColumnSpan="2"/>
 
 						<Label Content="Vorname:" Style="{StaticResource LabelDefault}"  Height="26"  Margin="14,124,21,150"/>
 						<TextBox Name="TbSurname" HorizontalAlignment="Left" Height="23" Margin="132,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" Grid.ColumnSpan="2"/>
@@ -136,7 +137,7 @@
 						<Label Content="E-Mail:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,220,21,54"/>
 						<TextBox Name="TbEMail" HorizontalAlignment="Left" Height="23" Margin="132,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" Grid.ColumnSpan="2"/>
 
-						<Button Margin="466,248,10,26" Style="{StaticResource ButtonDefault}" Grid.Column="1" Click="PersonButtonSaveClick" >
+						<Button Margin="466,248,10,26" Style="{StaticResource ButtonDefault}" Grid.Column="1" Click="PersonButtonSave_Click" >
 							<StackPanel Orientation="Horizontal">
 								<Image VerticalAlignment="Center"  Source=".\Resources\images\disk.png" Stretch="None" />
 								<TextBlock VerticalAlignment="Center" Margin="5, 0" Text="Speichern"/>

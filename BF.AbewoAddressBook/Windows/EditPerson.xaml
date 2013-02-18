@@ -23,49 +23,48 @@
 
     <Grid VerticalAlignment="Top" Height="300" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="37*"/>
-            <ColumnDefinition Width="144*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label FontWeight="Bold" FontSize="20"  Foreground="#333333" Content="Eine Person bearbeiten:" Grid.ColumnSpan="2" Margin="0,0,0,259" />
+        <Label FontWeight="Bold" FontSize="20"  Foreground="#333333" Content="Eine Person bearbeiten:" Margin="0,0,0,259" />
 
-        <Label Content="Anrede:" Style="{StaticResource LabelDefault}" Height="26" Margin="14,64,21,210"/>
-        <RadioButton GroupName="GrpGender" Name="RbEditMale" Content="Herr" HorizontalAlignment="Left" Margin="132,71,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <RadioButton GroupName="GrpGender" Name="RbEditFemale" Content="Frau" HorizontalAlignment="Left" Margin="44,71,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Anrede:" Style="{StaticResource LabelDefault}" Height="26" Margin="14,64,599,210"/>
+        <RadioButton GroupName="GrpGender" Name="RbEditMale" Content="Herr" HorizontalAlignment="Left" Margin="132,71,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName="GrpGender" Name="RbEditFemale" Content="Frau" HorizontalAlignment="Left" Margin="193,71,0,0" VerticalAlignment="Top"/>
 
-        <Label Content="Name:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,92,21,182"/>
-        <TextBox Name="TbEditName" HorizontalAlignment="Left" Height="23" Margin="132,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" Grid.ColumnSpan="2"/>
+        <Label Content="Name:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,92,599,182"/>
+        <TextBox Name="TbEditName" HorizontalAlignment="Left" Height="23" Margin="132,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582"/>
 
-        <Label Content="Vorname:" Style="{StaticResource LabelDefault}"  Height="26"  Margin="14,124,21,150"/>
-        <TextBox Name="TbEditSurname" HorizontalAlignment="Left" Height="23" Margin="132,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" Grid.ColumnSpan="2"/>
+        <Label Content="Vorname:" Style="{StaticResource LabelDefault}"  Height="26"  Margin="14,124,599,150"/>
+        <TextBox Name="TbEditSurname" HorizontalAlignment="Left" Height="23" Margin="132,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582"/>
 
-        <Label Content="Strasse:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,156,21,118"/>
-        <TextBox Name="TbEditStreet" HorizontalAlignment="Left" Height="23" Margin="132,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Grid.ColumnSpan="2"/>
+        <Label Content="Strasse:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,156,599,118"/>
+        <TextBox Name="TbEditStreet" HorizontalAlignment="Left" Height="23" Margin="132,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
 
-        <Label Content="Nr:" Style="{StaticResource LabelDefault}" Height="26"  Margin="200,156,326,118" Grid.Column="1"/>
-        <TextBox Name="TbEditStreetNr" HorizontalAlignment="Left" Height="23" Margin="255,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Grid.Column="1"/>
+        <Label Content="Nr:" Style="{StaticResource LabelDefault}" Height="26"  Margin="349,156,326,118"/>
+        <TextBox Name="TbEditStreetNr" HorizontalAlignment="Left" Height="23" Margin="404,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
 
-        <Label Content="PLZ:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,188,21,86"/>
-        <TextBox Name="TbEditPlz" HorizontalAlignment="Left" Height="23" Margin="132,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Grid.ColumnSpan="2"/>
+        <Label Content="PLZ:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,188,599,86"/>
+        <TextBox Name="TbEditPlz" HorizontalAlignment="Left" Height="23" Margin="132,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
 
-        <Label Content="Ort:" Style="{StaticResource LabelDefault}" Height="26"  Margin="200,188,326,86" Grid.Column="1"/>
-        <TextBox Name="TbEditPlace" HorizontalAlignment="Left" Height="23" Margin="255,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Grid.Column="1"/>
+        <Label Content="Ort:" Style="{StaticResource LabelDefault}" Height="26"  Margin="349,188,326,86"/>
+        <TextBox Name="TbEditPlace" HorizontalAlignment="Left" Height="23" Margin="404,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
 
-        <Label Content="E-Mail:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,220,21,54"/>
-        <TextBox Name="TbEditEMail" HorizontalAlignment="Left" Height="23" Margin="132,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" Grid.ColumnSpan="2"/>
+        <Label Content="E-Mail:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,220,599,54"/>
+        <TextBox Name="TbEditEMail" HorizontalAlignment="Left" Height="23" Margin="132,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582"/>
 
-        <Button Margin="182,274,296,0" Style="{StaticResource ButtonDefault}" Grid.Column="1" Click="ButtonCancelClick" >
+        <Button Margin="331,274,296,0" Style="{StaticResource ButtonDefault}" Click="ButtonCancelClick" >
             <StackPanel Orientation="Horizontal">
                 <Image VerticalAlignment="Center"  Source="..\Resources\images\delete.png" Stretch="None" />
                 <TextBlock VerticalAlignment="Center" Margin="5, 0" Text="Abbrechen"/>
             </StackPanel>
         </Button>
-        <Button Margin="287,274,191,0" Style="{StaticResource ButtonDefault}" Grid.Column="1" Click="PersonButtonUpdateClick" >
+        <Button Margin="436,274,191,0" Style="{StaticResource ButtonDefault}" Click="PersonButtonUpdateClick" >
             <StackPanel Orientation="Horizontal">
                 <Image VerticalAlignment="Center"  Source="..\Resources\images\disk.png" Stretch="None" />
                 <TextBlock VerticalAlignment="Center" Margin="5, 0" Text="Speichern"/>
             </StackPanel>
         </Button>
-        <Button Margin="392,274,13,0" Style="{StaticResource ButtonDefault}" Grid.Column="1" Click="PersonButtonUpdateAndCloseClick" >
+        <Button Margin="541,274,13,0" Style="{StaticResource ButtonDefault}" Click="PersonButtonUpdateAndCloseClick" >
             <StackPanel Orientation="Horizontal">
                 <Image VerticalAlignment="Center"  Source="..\Resources\images\disk.png" Stretch="None" />
                 <TextBlock VerticalAlignment="Center" Margin="5, 0" Text="Speichern und schliessen"/>

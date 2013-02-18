@@ -11,7 +11,12 @@ namespace BF.AbewoAdressBook
 	static class Octopus
 	{
 
-		public static List<Person> GetDbContent( string searchWord = "" )
+		/// <summary>
+		/// Gets the whole list of <see cref="Person"/> from the DB
+		/// </summary>
+		/// <param name="searchWord">The word to search for</param>
+		/// <returns></returns>
+		public static List<Person> GetAllPersonsFromDb( string searchWord = "" )
 		{
 			List<Person> persons = new List<Person>();
 
@@ -31,6 +36,11 @@ namespace BF.AbewoAdressBook
 			return persons;
 		}
 
+		/// <summary>
+		/// Saves the <see cref="Person"/>.
+		/// </summary>
+		/// <param name="person">person</param>
+		/// <returns></returns>
 		public static bool SavePerson( Person person )
 		{
 			using( var db = new AbewoAddressBookContext() )
@@ -41,6 +51,11 @@ namespace BF.AbewoAdressBook
 			return true;
 		}
 
+		/// <summary>
+		/// Updates the <see cref="Person"/>.
+		/// </summary>
+		/// <param name="person">person</param>
+		/// <returns></returns>
 		public static bool UpdatePerson( Person person )
 		{
 			using( var db = new AbewoAddressBookContext() )

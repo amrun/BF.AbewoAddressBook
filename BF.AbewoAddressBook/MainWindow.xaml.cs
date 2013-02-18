@@ -12,6 +12,7 @@ namespace BF.AbewoAdressBook
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
+	/// Automatically load the list of the persons.
 	/// </summary>
 	public partial class MainWindow: Window
 	{
@@ -21,9 +22,12 @@ namespace BF.AbewoAdressBook
 			UpdateResultlist();
 		}
 
+		/// <summary>
+		/// Updates the resultlist (The main list of the program displaying the persons).
+		/// </summary>
 		private void UpdateResultlist()
 		{
-			List<Person> personList = Octopus.GetDbContent();
+			List<Person> personList = Octopus.GetAllPersonsFromDb();
 			try
 			{
 				ResultList.ItemsSource = personList;
@@ -33,10 +37,14 @@ namespace BF.AbewoAdressBook
 			}
 		}
 
-		public void SearchField_TextChanged( object sender, TextChangedEventArgs e )
+		/// <summary>
+		/// On change in the TbSearchField, update the list.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="TextChangedEventArgs"/> instance containing the event data.</param>
+		public void TbSearchField_TextChanged( object sender, TextChangedEventArgs e )
 		{
-
-			List<Person> personList = Octopus.GetDbContent( SearchField.Text );
+			List<Person> personList = Octopus.GetAllPersonsFromDb( TbSearchField.Text );
 
 			try
 			{
@@ -48,14 +56,13 @@ namespace BF.AbewoAdressBook
 		}
 
 
-		private void UIElement_OnGotFocus( object sender, RoutedEventArgs e )
-		{
-			var textBox = e.OriginalSource as TextBox;
-			if( textBox != null )
-				textBox.SelectAll();
-		}
 
-		private void PersonButtonSaveClick( object sender, RoutedEventArgs e )
+		/// <summary>
+		/// Handle the click on the Save button.
+		/// </summary>
+		/// <param name="sender">The sender.</param>
+		/// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+		private void PersonButtonSave_Click( object sender, RoutedEventArgs e )
 		{
 			Person person = new Person();
 			person.Name = TbName.Text;
@@ -68,7 +75,12 @@ namespace BF.AbewoAdressBook
 
 		}
 
-		private void PersonButtonEditPerson( object sender, RoutedEventArgs e )
+		/// <summary>
+		/// Handle the click on the edit button inside the list.
+		/// </summary>
+		/// <param name="sender">The sender.</param>
+		/// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+		private void PersonButtonEditPerson_Click( object sender, RoutedEventArgs e )
 		{
 			ResultList.SelectedItem = ( (Button)sender ).DataContext;
 			Person editPerson = (Person)ResultList.SelectedItem;

@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using BF.AbewoAdressBook.Entities;
 
 namespace BF.AbewoAdressBook.Windows
@@ -20,18 +9,20 @@ namespace BF.AbewoAdressBook.Windows
 	/// </summary>
 	public partial class EditPerson : Window
 	{
-
+		/// <summary>
+		/// Prepares the EditPerson form with the data of the person to edit.
+		/// </summary>
+		/// <param name="personId">The id of the person to edit</param>
 		public EditPerson( int personId )
 		{
-
 			InitializeComponent();
 
-			this.PersonId = personId;
+			PersonId = personId;
 			using( var db = new AbewoAddressBookContext() )
 			{
-				var query = from b in db.Persons
-							where b.personId.Equals( this.PersonId )
-							select b;
+				IQueryable<Person> query = from b in db.Persons
+										   where b.personId.Equals( PersonId )
+										   select b;
 
 				if( query.First().Gender.Equals( false ) )
 				{
@@ -52,15 +43,30 @@ namespace BF.AbewoAdressBook.Windows
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the person id.
+		/// </summary>
+		/// <value>
+		/// The person id.
+		/// </value>
+		private int PersonId
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets the data from the form and updates the person which was edited.
+		/// </summary>
+		/// <param name="sender">The sender.</param>
+		/// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
 		private void PersonButtonUpdateClick( object sender, RoutedEventArgs e )
 		{
-
-
 			using( var db = new AbewoAddressBookContext() )
 			{
-				var query = from b in db.Persons
-							where b.personId.Equals( this.PersonId )
-							select b;
+				IQueryable<Person> query = from b in db.Persons
+										   where b.personId.Equals( PersonId )
+										   select b;
 
 				if( RbEditMale.IsChecked == true )
 				{
@@ -80,27 +86,29 @@ namespace BF.AbewoAdressBook.Windows
 				query.First().StreetNr = TbEditStreetNr.Text;
 
 				db.SaveChanges();
-
 			}
 
-			//Octopus.UpdatePerson( Pp );
 		}
 
-		protected int PersonId
-		{
-			get;
-			set;
-		}
-
+		/// <summary>
+		/// Closes the editPerson window, doing nothing to the database.
+		/// </summary>
+		/// <param name="sender">The sender.</param>
+		/// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
 		private void ButtonCancelClick( object sender, RoutedEventArgs e )
 		{
-			this.Close();
+			Close();
 		}
 
+		/// <summary>
+		/// Calls the <see cref="PersonButtonUpdateClick"/> method to save the changes and closes the editPerson window.
+		/// </summary>
+		/// <param name="sender">The sender.</param>
+		/// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
 		private void PersonButtonUpdateAndCloseClick( object sender, RoutedEventArgs e )
 		{
 			PersonButtonUpdateClick( sender, e );
-			this.Close();
+			Close();
 		}
 	}
 }
