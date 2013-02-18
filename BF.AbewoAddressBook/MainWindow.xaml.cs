@@ -32,14 +32,15 @@ namespace BF.AbewoAdressBook
 		/// </summary>
 		private void UpdateResultlist()
 		{
-			List<Person> personList = Person.GetAllPersons();
-			try
-			{
-				ResultList.ItemsSource = personList;
-			}
-			catch( Exception m )
-			{
-			}
+			TbSearchField_TextChanged(null, null);
+			//List<Person> personList = Person.GetAllPersons( TbSearchField.Text );
+			//try
+			//{
+			//	ResultList.ItemsSource = personList;
+			//}
+			//catch( Exception m )
+			//{
+			//}
 		}
 
 		/// <summary>

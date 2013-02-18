@@ -178,7 +178,7 @@
                     </Grid>
                 </Border>
             </TabItem>
-            <TabItem>
+            <!--<TabItem>
                 <TabItem.Header >
                     <StackPanel Orientation="Horizontal">
                         <Image VerticalAlignment="Center"  Source=".\Resources\images\building_add.png" />
@@ -188,7 +188,7 @@
                 <Grid>
 
                 </Grid>
-            </TabItem>
+            </TabItem>-->
         </TabControl>
 
     </Grid>

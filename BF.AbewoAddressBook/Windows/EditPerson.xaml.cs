@@ -82,6 +82,7 @@ namespace BF.AbewoAdressBook.Windows
 				query.First().Email = TbEditEMail.Text;
 				query.First().Surname = TbEditSurname.Text;
 				query.First().Plz = TbEditPlz.Text;
+				query.First().City = TbEditCity.Text;
 				query.First().Street = TbEditStreet.Text;
 				query.First().StreetNr = TbEditStreetNr.Text;
 

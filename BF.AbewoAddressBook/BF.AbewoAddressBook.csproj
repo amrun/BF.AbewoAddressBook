@@ -73,6 +73,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\201302131608510_InitialCreate.cs" />
+    <Compile Include="Migrations\201302131608510_InitialCreate.Designer.cs">
+      <DependentUpon>201302131608510_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201302181537556_Add Company String to Entity Person.cs" />
+    <Compile Include="Migrations\201302181537556_Add Company String to Entity Person.Designer.cs">
+      <DependentUpon>201302181537556_Add Company String to Entity Person.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Windows\EditPerson.xaml.cs">
       <DependentUpon>EditPerson.xaml</DependentUpon>
     </Compile>
@@ -115,6 +124,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201302131608510_InitialCreate.resx">
+      <DependentUpon>201302131608510_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201302181537556_Add Company String to Entity Person.resx">
+      <DependentUpon>201302181537556_Add Company String to Entity Person.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
