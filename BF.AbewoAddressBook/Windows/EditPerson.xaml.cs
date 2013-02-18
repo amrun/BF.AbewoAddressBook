@@ -34,12 +34,12 @@ namespace BF.AbewoAdressBook.Windows
 				}
 				TbEditName.Text = query.First().Name;
 				TbEditSurname.Text = query.First().Surname;
-				TbEditEMail.Text = query.First().Email;
 				TbEditSurname.Text = query.First().Surname;
-				TbEditName.Text = query.First().Name;
+				TbEditCity.Text = query.First().City;
 				TbEditPlz.Text = query.First().Plz;
 				TbEditStreet.Text = query.First().Street;
 				TbEditStreetNr.Text = query.First().StreetNr;
+				TbEditEMail.Text = query.First().Email;
 			}
 		}
 
@@ -60,7 +60,7 @@ namespace BF.AbewoAdressBook.Windows
 		/// </summary>
 		/// <param name="sender">The sender.</param>
 		/// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-		private void PersonButtonUpdateClick( object sender, RoutedEventArgs e )
+		private void PersonButtonUpdate_Click( object sender, RoutedEventArgs e )
 		{
 			using( var db = new AbewoAddressBookContext() )
 			{
@@ -88,6 +88,7 @@ namespace BF.AbewoAdressBook.Windows
 				db.SaveChanges();
 			}
 
+			Close();
 		}
 
 		/// <summary>
@@ -95,19 +96,8 @@ namespace BF.AbewoAdressBook.Windows
 		/// </summary>
 		/// <param name="sender">The sender.</param>
 		/// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-		private void ButtonCancelClick( object sender, RoutedEventArgs e )
+		private void ButtonCancel_Click( object sender, RoutedEventArgs e )
 		{
-			Close();
-		}
-
-		/// <summary>
-		/// Calls the <see cref="PersonButtonUpdateClick"/> method to save the changes and closes the editPerson window.
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-		private void PersonButtonUpdateAndCloseClick( object sender, RoutedEventArgs e )
-		{
-			PersonButtonUpdateClick( sender, e );
 			Close();
 		}
 	}

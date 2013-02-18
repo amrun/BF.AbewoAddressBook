@@ -47,24 +47,18 @@
         <TextBox Name="TbEditPlz" HorizontalAlignment="Left" Height="23" Margin="132,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
 
         <Label Content="Ort:" Style="{StaticResource LabelDefault}" Height="26"  Margin="349,188,326,86"/>
-        <TextBox Name="TbEditPlace" HorizontalAlignment="Left" Height="23" Margin="404,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
+        <TextBox Name="TbEditCity" HorizontalAlignment="Left" Height="23" Margin="404,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
 
         <Label Content="E-Mail:" Style="{StaticResource LabelDefault}" Height="26"  Margin="14,220,599,54"/>
         <TextBox Name="TbEditEMail" HorizontalAlignment="Left" Height="23" Margin="132,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582"/>
 
-        <Button Margin="331,274,296,0" Style="{StaticResource ButtonDefault}" Click="ButtonCancelClick" >
+        <Button Margin="426,274,201,0" Style="{StaticResource ButtonDefault}" Click="ButtonCancel_Click" >
             <StackPanel Orientation="Horizontal">
                 <Image VerticalAlignment="Center"  Source="..\Resources\images\delete.png" Stretch="None" />
                 <TextBlock VerticalAlignment="Center" Margin="5, 0" Text="Abbrechen"/>
             </StackPanel>
         </Button>
-        <Button Margin="436,274,191,0" Style="{StaticResource ButtonDefault}" Click="PersonButtonUpdateClick" >
-            <StackPanel Orientation="Horizontal">
-                <Image VerticalAlignment="Center"  Source="..\Resources\images\disk.png" Stretch="None" />
-                <TextBlock VerticalAlignment="Center" Margin="5, 0" Text="Speichern"/>
-            </StackPanel>
-        </Button>
-        <Button Margin="541,274,13,0" Style="{StaticResource ButtonDefault}" Click="PersonButtonUpdateAndCloseClick" >
+        <Button Margin="531,274,13,0" Style="{StaticResource ButtonDefault}" Click="PersonButtonUpdate_Click" >
             <StackPanel Orientation="Horizontal">
                 <Image VerticalAlignment="Center"  Source="..\Resources\images\disk.png" Stretch="None" />
                 <TextBlock VerticalAlignment="Center" Margin="5, 0" Text="Speichern und schliessen"/>
